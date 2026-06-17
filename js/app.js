@@ -89,7 +89,7 @@
       } else if (available === 1) {
         textEl.textContent = '¡Solo queda 1 cupo disponible!';
       } else {
-        textEl.textContent = `${available} de ${total} cupos disponibles`;
+        textEl.textContent = `Solo quedan ${available} de ${total} cupos disponibles para este mes`;
       }
     }
   }

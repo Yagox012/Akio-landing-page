@@ -764,6 +764,12 @@ body {
   margin: 0;
 }
 
+.price-hosting {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.28);
+  margin: 0.35rem 0 0;
+}
+
 /* ----- CTAs ----- */
 .pricing-ctas {
   display: flex;
