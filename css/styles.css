@@ -928,7 +928,7 @@ body {
 }
 .form-error[hidden] { display: none; }
 
-.form-submit { width: 100%; justify-content: center; margin-top: 0.75rem; }
+.form-submit { width: 100%; justify-content: center; }
 
 /* Separador "o si prefieres" */
 .contact-sep {
