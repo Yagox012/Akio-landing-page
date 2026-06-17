@@ -89,7 +89,41 @@
     }
   }
 
-  /* ---------- 4. Reveal en cascada por scroll ---------- */
+  /* ---------- 4. Formulario → WhatsApp ---------- */
+  const form = document.getElementById('contact-form');
+  const formError = document.getElementById('form-error');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name  = form.name.value.trim();
+      const biz   = form.biz.value.trim();
+      const phone = form.phone.value.trim();
+      const msg   = form.msg ? form.msg.value.trim() : '';
+
+      // Validación básica
+      if (!name || !biz || !phone) {
+        formError.hidden = false;
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      formError.hidden = true;
+
+      // Armar mensaje de WhatsApp
+      let waText = `Hola AKIO Studio 👋\n\nMe llamo *${name}* y tengo un negocio de *${biz}*.\n\nMe interesa la oferta de lanzamiento de $2,499 MXN. Mi WhatsApp es ${phone}.`;
+      if (msg) waText += `\n\n${msg}`;
+
+      // TODO: reemplazar 521000000000 con el número real de WhatsApp
+      const waURL = `https://wa.me/521000000000?text=${encodeURIComponent(waText)}`;
+      window.open(waURL, '_blank', 'noopener');
+    });
+
+    // Ocultar error al empezar a escribir
+    form.addEventListener('input', () => { formError.hidden = true; });
+  }
+
+  /* ---------- 5. Reveal en cascada por scroll ---------- */
   const revealItems = document.querySelectorAll('.reveal-on-scroll');
 
   if (revealItems.length) {

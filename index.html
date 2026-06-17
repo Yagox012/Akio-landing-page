@@ -330,8 +330,133 @@
       </div>
     </section>
 
-    <!-- La sección de Contacto se implementa en la fase 4 -->
+    <!-- ============================ -->
+    <!-- 5. CONTACTO                  -->
+    <!-- ============================ -->
+    <section id="contacto" class="contacto">
+      <div class="section-inner">
+
+        <div class="section-header reveal-on-scroll" style="--delay: 0ms">
+          <span class="section-tag">Cotización gratuita</span>
+          <h2 class="section-title">Cuéntanos de tu negocio.<br />Nosotros hacemos el resto.</h2>
+          <p class="section-subtitle">
+            Completa el formulario y en menos de 24 horas te enviamos una propuesta personalizada.
+            Sin compromisos.
+          </p>
+        </div>
+
+        <div class="contact-wrap reveal-on-scroll" style="--delay: 100ms">
+
+          <!-- Formulario -->
+          <div class="contact-card glass">
+            <!-- El formulario arma un mensaje de WhatsApp y lo abre (sin backend) -->
+            <form id="contact-form" novalidate>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label class="field-label" for="cf-name">Tu nombre</label>
+                  <input id="cf-name" name="name" type="text" class="field-input"
+                         placeholder="Ej: María García" autocomplete="name" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="cf-biz">Tipo de negocio</label>
+                  <input id="cf-biz" name="biz" type="text" class="field-input"
+                         placeholder="Ej: Salón de belleza, gym..." required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="cf-phone">Tu WhatsApp</label>
+                <div class="field-phone-wrap">
+                  <span class="field-prefix">+52</span>
+                  <input id="cf-phone" name="phone" type="tel" class="field-input field-input--phone"
+                         placeholder="55 1234 5678" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="cf-msg">¿Algo que quieras contarnos? <span class="field-optional">(opcional)</span></label>
+                <textarea id="cf-msg" name="msg" class="field-input field-input--textarea"
+                          placeholder="Cuéntanos a qué se dedica tu negocio, qué resultados esperas de tu web..." rows="3"></textarea>
+              </div>
+
+              <!-- Mensaje de error de validación -->
+              <p class="form-error" id="form-error" hidden>
+                Por favor completa tu nombre, tipo de negocio y WhatsApp.
+              </p>
+
+              <button type="submit" class="btn btn--primary btn--lg spring form-submit">
+                Enviar y hablar por WhatsApp
+                <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+            </form>
+
+            <!-- Separador -->
+            <div class="contact-sep">
+              <span>o si prefieres</span>
+            </div>
+
+            <!-- TODO: reemplazar 521000000000 con el número real de WhatsApp -->
+            <a href="https://wa.me/521000000000?text=Hola%20AKIO%20Studio%2C%20quiero%20información%20sobre%20sus%20servicios"
+               target="_blank" rel="noopener" class="btn btn--ghost spring contact-wa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 13.99c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+              </svg>
+              Escríbenos directamente por WhatsApp
+            </a>
+
+            <p class="contact-note">
+              Respondemos en menos de 1 hora en horario hábil.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- ============================ -->
+  <!-- FOOTER                       -->
+  <!-- ============================ -->
+  <footer class="footer">
+    <div class="section-inner">
+      <div class="footer-inner">
+
+        <!-- Logo y descripción -->
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo footer-logo spring" aria-label="AKIO Studio — inicio">
+            <span class="logo-mark" aria-hidden="true">A</span>
+            <span class="logo-text">AKIO<span class="logo-text-light"> Studio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Páginas web de alta conversión.<br />Entrega express en 48 horas.
+          </p>
+        </div>
+
+        <!-- Links rápidos -->
+        <nav class="footer-nav" aria-label="Navegación del pie de página">
+          <a href="#beneficios" class="footer-link spring">Beneficios</a>
+          <a href="#oferta" class="footer-link spring">Oferta</a>
+          <a href="#contacto" class="footer-link spring">Contacto</a>
+        </nav>
+
+        <!-- CTA final -->
+        <!-- TODO: reemplazar 521000000000 con el número real de WhatsApp -->
+        <a href="https://wa.me/521000000000?text=Hola%20AKIO%20Studio%2C%20quiero%20información%20sobre%20la%20oferta%20de%20lanzamiento"
+           target="_blank" rel="noopener" class="btn btn--primary btn--sm spring footer-cta">
+          Empezar ahora
+        </a>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 AKIO Studio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="js/app.js"></script>
 </body>

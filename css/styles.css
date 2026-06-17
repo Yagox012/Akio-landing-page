@@ -498,7 +498,9 @@ body {
 }
 
 .section-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.4rem 1rem;
   border-radius: 9999px;
   font-size: 0.8rem;
@@ -803,6 +805,211 @@ body {
 .chip--accent::before { content: ''; }
 
 /* ===================================================================
+   CONTACTO
+   =================================================================== */
+.contacto {
+  padding: 6rem 0;
+}
+
+.contact-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  border-radius: 28px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Fila de dos campos lado a lado */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+.field-optional {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.field-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: #fff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  -webkit-appearance: none;
+}
+.field-input::placeholder { color: rgba(255, 255, 255, 0.28); }
+.field-input:focus {
+  border-color: rgba(124, 92, 255, 0.6);
+  background: rgba(124, 92, 255, 0.07);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.15);
+}
+
+/* Campo con prefijo +52 */
+.field-phone-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.field-phone-wrap:focus-within {
+  border-color: rgba(124, 92, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.15);
+}
+.field-prefix {
+  padding: 0 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+  user-select: none;
+}
+.field-input--phone {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  flex: 1;
+}
+.field-input--phone:focus {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.field-input--textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.55;
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: rgba(255, 100, 100, 0.9);
+  margin: -0.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  background: rgba(255, 60, 60, 0.08);
+  border: 1px solid rgba(255, 60, 60, 0.2);
+  border-radius: 10px;
+}
+.form-error[hidden] { display: none; }
+
+.form-submit { width: 100%; justify-content: center; }
+
+/* Separador "o si prefieres" */
+.contact-sep {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 0.82rem;
+}
+.contact-sep::before,
+.contact-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-wa { width: 100%; justify-content: center; }
+
+.contact-note {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: -0.5rem 0 0;
+}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.footer {
+  padding: 3rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-logo { text-decoration: none; }
+
+.footer-tagline {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0;
+}
+
+/* ===================================================================
    RESPONSIVE
    =================================================================== */
 @media (max-width: 860px) {
@@ -817,6 +1024,11 @@ body {
   .section-header { margin-bottom: 2.5rem; }
   .pricing-card { padding: 1.75rem 1.25rem; gap: 1.5rem; border-radius: 22px; }
   .oferta { padding: 3.5rem 0; }
+  .field-row { grid-template-columns: 1fr; }
+  .contact-card { padding: 1.75rem 1.25rem; border-radius: 22px; }
+  .contacto { padding: 3.5rem 0; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-cta { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
