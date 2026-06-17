@@ -239,16 +239,16 @@ body {
   letter-spacing: -0.02em;
 }
 
-.logo-mark {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
-  font-weight: 900;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 6px 18px -6px rgba(124, 92, 255, 0.8), var(--glass-inset);
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(124, 92, 255, 0.5));
+}
+
+.logo-img--footer {
+  height: 44px;
 }
 
 .logo-text { font-size: 1.05rem; }
