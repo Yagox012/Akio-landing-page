@@ -250,7 +250,135 @@
       </div>
     </section>
 
-    <!-- Las siguientes secciones (Oferta, Contacto) se implementan en la fase 3 -->
+    <!-- ============================ -->
+    <!-- 4. OFERTA DE LANZAMIENTO    -->
+    <!-- ============================ -->
+    <section id="oferta" class="oferta">
+      <div class="section-inner">
+
+        <div class="oferta-banner glass reveal-on-scroll" style="--delay: 0ms">
+          <!-- Resplandor decorativo interno -->
+          <div class="oferta-glow" aria-hidden="true"></div>
+
+          <!-- Cabecera del banner -->
+          <div class="oferta-head">
+            <span class="section-tag oferta-tag reveal-on-scroll" style="--delay: 60ms">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              Oferta de lanzamiento · Tiempo limitado
+            </span>
+            <h2 class="section-title reveal-on-scroll" style="--delay: 120ms">
+              Tu primera web profesional.<br />Sin riesgos, sin sorpresas.
+            </h2>
+            <p class="section-subtitle reveal-on-scroll" style="--delay: 180ms">
+              Estamos construyendo nuestro portafolio y queremos demostrarte en vivo lo que hacemos.
+              Por eso, los primeros <strong>5 negocios</strong> obtienen una landing page completa
+              a un precio de lanzamiento irrepetible.
+            </p>
+          </div>
+
+          <!-- Cuerpo: columna izquierda (incluidos) + derecha (precio y cupos) -->
+          <div class="oferta-body">
+
+            <!-- Columna izquierda: qué incluye -->
+            <div class="oferta-includes reveal-on-scroll" style="--delay: 240ms">
+              <p class="includes-label">Todo incluido en un solo pago:</p>
+              <ul class="includes-list">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Diseño profesional personalizado
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Textos de venta redactados por nosotros
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Versión móvil perfecta (mobile-first)
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Botón de WhatsApp integrado
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Alta en Google Maps / Business
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Dominio .com.mx o .mx por 1 año
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Hosting por 1 año incluido
+                </li>
+                <li class="includes-highlight">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Entrega en 48 horas
+                </li>
+              </ul>
+            </div>
+
+            <!-- Columna derecha: precio + cupos + CTA -->
+            <div class="oferta-pricing reveal-on-scroll" style="--delay: 300ms">
+              <div class="price-card glass-soft">
+
+                <!-- Precio tachado -->
+                <div class="price-original-wrap">
+                  <span class="price-label">Valor real del servicio</span>
+                  <span class="price-original">$8,500 MXN</span>
+                </div>
+
+                <!-- Precio de lanzamiento -->
+                <div class="price-main">
+                  $2,499
+                  <span class="price-currency">MXN</span>
+                </div>
+                <p class="price-note">Pago único · Sin mensualidades · Sin contratos</p>
+
+                <!-- Contador de cupos -->
+                <!--
+                  Para actualizar los cupos cuando se llene un lugar:
+                  Cambia data-taken="0" al número de cupos tomados (ej: data-taken="2").
+                  El JS renderiza automáticamente los indicadores y el texto.
+                -->
+                <div class="cupos-wrap" id="cupos-counter" data-total="5" data-taken="0">
+                  <div class="cupos-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <span class="cupos-title">Cupos de lanzamiento</span>
+                  </div>
+                  <div class="cupos-dots" id="cupos-dots" aria-label="Cupos disponibles"></div>
+                  <p class="cupos-text" id="cupos-text"></p>
+                </div>
+
+                <!-- CTA principal -->
+                <a href="#contacto" class="btn btn--primary btn--lg spring oferta-cta">
+                  Quiero mi web ahora
+                  <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+
+                <!-- TODO: reemplazar el número de WhatsApp (placeholder 521000000000) -->
+                <a href="https://wa.me/521000000000?text=Hola%20AKIO%20Studio%2C%20quiero%20información%20sobre%20la%20oferta%20de%20lanzamiento%20de%20%242%2C499%20MXN"
+                   target="_blank" rel="noopener" class="btn btn--ghost spring oferta-wa">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 13.99c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+                  </svg>
+                  Preguntar por WhatsApp
+                </a>
+
+              </div>
+            </div>
+          </div><!-- /oferta-body -->
+        </div><!-- /oferta-banner -->
+      </div>
+    </section>
+
+    <!-- La sección de Contacto se implementa en la fase 4 -->
   </main>
 
   <script src="js/app.js"></script>

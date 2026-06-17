@@ -57,7 +57,39 @@
     });
   }
 
-  /* ---------- 3. Reveal en cascada por scroll ---------- */
+  /* ---------- 3. Contador de cupos disponibles ---------- */
+  const cuposEl = document.getElementById('cupos-counter');
+  if (cuposEl) {
+    const total = parseInt(cuposEl.dataset.total, 10) || 5;
+    const taken = parseInt(cuposEl.dataset.taken, 10) || 0;
+    const available = Math.max(0, total - taken);
+
+    // Renderizar los puntos
+    const dotsEl = document.getElementById('cupos-dots');
+    if (dotsEl) {
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('div');
+        dot.className = i < taken ? 'cupo-dot cupo-dot--taken' : 'cupo-dot cupo-dot--available';
+        dot.setAttribute('aria-hidden', 'true');
+        dotsEl.appendChild(dot);
+      }
+    }
+
+    // Actualizar texto
+    const textEl = document.getElementById('cupos-text');
+    if (textEl) {
+      if (available === 0) {
+        textEl.textContent = '¡Cupos agotados! Únete a la lista de espera.';
+        textEl.style.color = 'rgba(255, 100, 100, 0.85)';
+      } else if (available === 1) {
+        textEl.textContent = '¡Solo queda 1 cupo disponible!';
+      } else {
+        textEl.textContent = `${available} de ${total} cupos disponibles`;
+      }
+    }
+  }
+
+  /* ---------- 4. Reveal en cascada por scroll ---------- */
   const revealItems = document.querySelectorAll('.reveal-on-scroll');
 
   if (revealItems.length) {
