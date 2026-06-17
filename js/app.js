@@ -51,6 +51,11 @@
       if (e.key === 'Escape' && !menu.hidden) closeMenu();
     });
 
+    // Cerrar al hacer clic fuera del menú y del botón
+    document.addEventListener('click', (e) => {
+      if (!menu.hidden && !menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+    });
+
     // Cerrar al redimensionar a escritorio
     window.addEventListener('resize', () => {
       if (window.innerWidth > 860 && !menu.hidden) closeMenu();
@@ -114,8 +119,7 @@
       let waText = `Hola AKIO Studio 👋\n\nMe llamo *${name}* y tengo un negocio de *${biz}*.\n\nMe interesa la oferta de lanzamiento de $2,499 MXN. Mi WhatsApp es ${phone}.`;
       if (msg) waText += `\n\n${msg}`;
 
-      // TODO: reemplazar 521000000000 con el número real de WhatsApp
-      const waURL = `https://wa.me/521000000000?text=${encodeURIComponent(waText)}`;
+      const waURL = `https://wa.me/525580951666?text=${encodeURIComponent(waText)}`;
       window.open(waURL, '_blank', 'noopener');
     });
 
