@@ -832,6 +832,19 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
+/* El form es una columna con gap uniforme entre cada grupo de campo */
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 /* Fila de dos campos lado a lado */
 .field-row {
   display: grid;
@@ -931,8 +944,6 @@ body {
   border-radius: 10px;
 }
 .form-error[hidden] { display: none; }
-
-.form-submit { width: 100%; justify-content: center; }
 
 /* Separador "o si prefieres" */
 .contact-sep {
