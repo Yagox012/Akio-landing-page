@@ -42,7 +42,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Estilos personalizados: Liquid Glass + Spring Physics -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- ?v= fuerza recarga del CSS cuando hay cambios (cache-busting) -->
+  <link rel="stylesheet" href="css/styles.css?v=5" />
 </head>
 
 <body class="bg-akio-bg text-white font-sans antialiased overflow-x-hidden">
@@ -348,7 +349,7 @@
         <div class="contact-wrap reveal-on-scroll" style="--delay: 100ms">
 
           <!-- Formulario -->
-          <div class="contact-card glass">
+          <div class="contact-card">
             <!-- El formulario arma un mensaje de WhatsApp y lo abre (sin backend) -->
             <form id="contact-form" novalidate>
 
@@ -458,6 +459,6 @@
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>
