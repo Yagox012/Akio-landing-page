@@ -635,205 +635,172 @@ body {
   padding: 6rem 0;
 }
 
-/* Tarjeta principal — glass con borde iluminado */
-.oferta-card {
+/* Tarjeta centrada — visible, flotante, con tinte púrpura */
+.pricing-card {
+  max-width: 680px;
+  margin: 0 auto;
   border-radius: 28px;
-  border-color: rgba(124, 92, 255, 0.22);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: linear-gradient(145deg, rgba(40, 25, 80, 0.75), rgba(18, 12, 42, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(124, 92, 255, 0.4);
   box-shadow:
-    0 0 0 1px rgba(124, 92, 255, 0.12),
-    0 32px 80px -20px rgba(124, 92, 255, 0.22),
-    var(--glass-inset);
-  /* Sin overflow:hidden para que backdrop-filter funcione en iOS */
+    0 0 0 1px rgba(124, 92, 255, 0.1),
+    0 40px 80px -20px rgba(124, 92, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-/* ----- Franja de cupos (top full-width) ----- */
-.cupos-strip {
+/* ----- Cupos ----- */
+.cupos-row {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 1.1rem 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 .cupos-dots {
   display: flex;
-  gap: 0.55rem;
-  flex-shrink: 0;
+  gap: 0.5rem;
 }
 
 .cupo-dot {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 2px solid transparent;
+  flex-shrink: 0;
 }
 .cupo-dot--available {
-  background: rgba(124, 92, 255, 0.25);
-  border-color: rgba(124, 92, 255, 0.55);
-  box-shadow: 0 0 12px -3px rgba(124, 92, 255, 0.6);
+  background: rgba(124, 92, 255, 0.3);
+  border-color: rgba(124, 92, 255, 0.7);
+  box-shadow: 0 0 10px rgba(124, 92, 255, 0.5);
   animation: cupo-pulse 3s ease-in-out infinite;
 }
 .cupo-dot--taken {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 @keyframes cupo-pulse {
-  0%, 100% { box-shadow: 0 0 12px -3px rgba(124, 92, 255, 0.6); }
-  50%       { box-shadow: 0 0 20px -1px rgba(124, 92, 255, 0.9); }
+  0%, 100% { box-shadow: 0 0 10px rgba(124, 92, 255, 0.5); }
+  50%       { box-shadow: 0 0 20px rgba(124, 92, 255, 0.85); }
 }
 
 .cupos-text {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--glow);
   margin: 0;
 }
 
-/* ----- Grid interno ----- */
-.oferta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  gap: 0;
-}
-
-/* Separador vertical */
-.oferta-divider {
-  background: rgba(255, 255, 255, 0.07);
-  margin: 2rem 0;
-}
-
-/* ----- Columna precio ----- */
-.oferta-price-col {
-  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+/* ----- Precio ----- */
+.pricing-hero {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
-.price-from {
-  font-size: 0.78rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: rgba(255, 255, 255, 0.38);
-}
-
-.price-original {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.32);
-  text-decoration: line-through;
-  text-decoration-color: rgba(255, 80, 80, 0.5);
-  line-height: 1;
-}
-.price-original span {
+.price-was {
   font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+.price-was s {
+  color: rgba(255, 100, 100, 0.65);
   font-weight: 600;
 }
 
-.price-main {
-  font-size: clamp(2.8rem, 5vw, 3.6rem);
+.price-now {
+  font-size: clamp(3rem, 8vw, 4.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
   color: #fff;
   display: flex;
   align-items: flex-end;
-  gap: 0.3rem;
-  margin-top: 0.2rem;
+  gap: 0.4rem;
 }
 .price-currency {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   letter-spacing: 0;
 }
 
 .price-note {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0.1rem 0 0.9rem;
+  color: rgba(255, 255, 255, 0.38);
+  margin: 0;
 }
 
-.oferta-actions {
+/* ----- CTAs ----- */
+.pricing-ctas {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  margin-top: 0.5rem;
+  gap: 0.7rem;
 }
-.oferta-actions .btn { width: 100%; justify-content: center; }
+.pricing-ctas .btn { width: 100%; justify-content: center; }
 
-/* ----- Columna incluidos ----- */
-.oferta-includes-col {
-  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+/* ----- Separador ----- */
+.pricing-sep {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 -0.5rem;
+}
+
+/* ----- Incluidos: chips ----- */
+.includes-wrap {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1rem;
 }
 
 .includes-label {
   font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.38);
   margin: 0;
 }
 
-.includes-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.includes-chips {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
-/* Cada ítem: fila con checkmark CSS (sin SVG inline) */
-.includes-list li {
-  padding: 0.62rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.97rem;
-  color: rgba(255, 255, 255, 0.78);
-}
-.includes-list li:last-child { border-bottom: none; }
-.includes-list li span {
+.chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.includes-list li span::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: rgba(124, 92, 255, 0.2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;
-  border: 1px solid rgba(124, 92, 255, 0.35);
+.chip::before {
+  content: '✓';
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--glow);
 }
 
-/* Ítem destacado: 48 horas */
-.includes-fast {
-  margin-top: 0.5rem;
-  border-bottom: none !important;
-}
-.includes-fast span {
-  font-weight: 700;
-  color: #fff;
-  background: rgba(124, 92, 255, 0.12);
-  border: 1px solid rgba(124, 92, 255, 0.28);
-  border-radius: 10px;
-  padding: 0.55rem 0.85rem;
-  width: 100%;
-}
-.includes-fast span::before {
-  background: rgba(34, 211, 238, 0.2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322d3ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2 3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E") center/11px no-repeat;
+.chip--accent {
+  background: rgba(34, 211, 238, 0.1);
   border-color: rgba(34, 211, 238, 0.3);
+  color: #fff;
+  font-weight: 700;
 }
+.chip--accent::before { content: ''; }
 
 /* ===================================================================
    RESPONSIVE
@@ -848,20 +815,7 @@ body {
   .benefits-grid { grid-template-columns: 1fr; }
   .benefits { padding: 4rem 0; }
   .section-header { margin-bottom: 2.5rem; }
-  /* Oferta: en móvil el grid de 3 (col | sep | col) pasa a 1 columna */
-  .oferta-grid {
-    grid-template-columns: 1fr;
-  }
-  .oferta-divider {
-    width: 100%;
-    height: 1px;
-    margin: 0;
-  }
-  .oferta-price-col,
-  .oferta-includes-col {
-    padding: 1.75rem 1.5rem;
-  }
-  .cupos-strip { padding: 1rem 1.5rem; }
+  .pricing-card { padding: 1.75rem 1.25rem; gap: 1.5rem; border-radius: 22px; }
   .oferta { padding: 3.5rem 0; }
 }
 
