@@ -116,10 +116,10 @@
       formError.hidden = true;
 
       // Armar mensaje de WhatsApp
-      let waText = `Hola AKIO Studio 👋\n\nMe llamo *${name}* y tengo un negocio de *${biz}*.\n\nMe interesa la oferta de lanzamiento de $2,499 MXN. Mi WhatsApp es ${phone}.`;
-      if (msg) waText += `\n\n${msg}`;
+      let waText = `Hola AKIO Studio, mi nombre es ${name} y me interesa la promoción de $1,999 para mi negocio de ${biz}.`;
+      if (msg) waText += ` ${msg}`;
 
-      const waURL = `https://wa.me/525580951666?text=${encodeURIComponent(waText)}`;
+      const waURL = `https://wa.me/525580951666?text=${encodeURIComponent(waText)}`; // REEMPLAZA AQUÍ CON TU NÚMERO REAL
       window.open(waURL, '_blank', 'noopener');
     });
 
