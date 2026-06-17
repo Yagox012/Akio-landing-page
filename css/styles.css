@@ -203,6 +203,14 @@ body {
   padding-top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
   padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  padding-bottom: 1.25rem;
+  /* Rellena la zona del Dynamic Island / notch con el mismo fondo de la página */
+  background: linear-gradient(
+    to bottom,
+    #0a0a0f 0%,
+    rgba(10, 10, 15, 0.85) 45%,
+    rgba(10, 10, 15, 0) 100%
+  );
 }
 
 .nav-bar {
@@ -344,11 +352,11 @@ body {
    HERO
    =================================================================== */
 .hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 9rem 1.25rem 4rem;
+  padding: calc(env(safe-area-inset-top, 0px) + 9rem) 1.25rem calc(env(safe-area-inset-bottom, 0px) + 4rem);
 }
 
 .hero-inner {
