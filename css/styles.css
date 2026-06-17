@@ -1,0 +1,515 @@
+/* ===================================================================
+   AKIO STUDIO — Sistema de diseño
+   Liquid Glass (Glassmorphism) + Spring Physics
+   =================================================================== */
+
+:root {
+  /* Curva de resorte (overshoot nativo) */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --spring-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Paleta */
+  --bg: #0a0a0f;
+  --accent: #7c5cff;
+  --accent-2: #22d3ee;
+  --glow: #a78bfa;
+
+  /* Reflejo interno de cristal (simula grosor del vidrio) */
+  --glass-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+}
+
+/* ===================================================================
+   FONDO DECORATIVO
+   =================================================================== */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.blob--1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.55), transparent 70%);
+  top: -120px;
+  left: -80px;
+  animation: float-slow 18s ease-in-out infinite;
+}
+
+.blob--2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent 70%);
+  top: 30%;
+  right: -120px;
+  animation: float-slow 22s ease-in-out infinite reverse;
+}
+
+.blob--3 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
+  bottom: -100px;
+  left: 35%;
+  animation: float-slow 26s ease-in-out infinite;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(30px, -40px) scale(1.08); }
+}
+
+/* ===================================================================
+   LIQUID GLASS — utilidades base
+   =================================================================== */
+.glass {
+  background: rgba(15, 16, 28, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 20px 50px -20px rgba(0, 0, 0, 0.7),
+    var(--glass-inset);
+}
+
+.glass-soft {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: var(--glass-inset);
+}
+
+/* ===================================================================
+   SPRING PHYSICS — micro-interacciones globales
+   =================================================================== */
+.spring {
+  transition:
+    transform 0.45s var(--spring),
+    box-shadow 0.45s var(--spring),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.spring:active {
+  transform: scale(0.95);
+}
+
+/* ===================================================================
+   BOTONES
+   =================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 9999px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn--sm  { padding: 0.55rem 1.15rem; font-size: 0.875rem; }
+.btn--lg  { padding: 1rem 1.9rem; font-size: 1rem; }
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent), var(--glow));
+  color: #fff;
+  box-shadow:
+    0 10px 30px -8px rgba(124, 92, 255, 0.6),
+    var(--glass-inset);
+}
+.btn--primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 18px 40px -10px rgba(124, 92, 255, 0.75),
+    var(--glass-inset);
+}
+.btn--primary:active { transform: scale(0.95); }
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  box-shadow: var(--glass-inset);
+}
+.btn--ghost:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.btn--ghost:active { transform: scale(0.95); }
+
+.btn-arrow { transition: transform 0.4s var(--spring); }
+.btn--primary:hover .btn-arrow { transform: translateX(4px); }
+
+/* ===================================================================
+   NAVEGACIÓN FLOTANTE
+   =================================================================== */
+.nav-wrapper {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.nav-bar {
+  width: 90%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.65rem 0.6rem 1.4rem;
+  border-radius: 9999px;
+  animation: nav-drop 0.8s var(--spring) both;
+}
+
+/* La nav se compacta al hacer scroll (clase añadida por JS) */
+.nav-bar.scrolled {
+  background: rgba(10, 10, 15, 0.7);
+  box-shadow:
+    0 12px 40px -12px rgba(0, 0, 0, 0.85),
+    var(--glass-inset);
+  transform: scale(0.98);
+}
+
+@keyframes nav-drop {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  font-weight: 900;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px -6px rgba(124, 92, 255, 0.8), var(--glass-inset);
+}
+
+.logo-text { font-size: 1.05rem; }
+.logo-text-light { color: rgba(255, 255, 255, 0.55); font-weight: 600; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 0.95rem;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.nav-cta { margin-left: 0.2rem; }
+
+/* Hamburguesa (móvil) */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.4s var(--spring), opacity 0.3s ease;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menú móvil */
+.mobile-menu {
+  width: 90%;
+  max-width: 1100px;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transform-origin: top center;
+  animation: menu-open 0.45s var(--spring) both;
+}
+.mobile-menu[hidden] { display: none; }
+
+@keyframes menu-open {
+  from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.mobile-link {
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+}
+.mobile-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+/* ===================================================================
+   HERO
+   =================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 1.25rem 4rem;
+}
+
+.hero-inner {
+  width: 100%;
+  max-width: 880px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(34, 211, 238, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+  background: linear-gradient(180deg, #fff 40%, rgba(255, 255, 255, 0.65));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 640px;
+  margin: 0;
+}
+.hero-subtitle strong { color: #fff; font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem;
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+.hero-trust .trust-num {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.hero-trust li:not(.trust-divider) { text-align: center; }
+.trust-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===================================================================
+   ENTRADA EN CASCADA (Staggered reveal)
+   =================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px) scale(0.98);
+  animation: reveal-spring 0.9s var(--spring) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes reveal-spring {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Reveal por scroll (lo activa el IntersectionObserver con .is-visible) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition:
+    opacity 0.8s var(--spring),
+    transform 0.8s var(--spring);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ===================================================================
+   RESPONSIVE
+   =================================================================== */
+@media (max-width: 860px) {
+  .nav-links,
+  .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+  .nav-bar { padding: 0.55rem 0.7rem 0.55rem 1.1rem; }
+  .hero-trust { gap: 0.8rem; }
+  .trust-divider { display: none; }
+}
+
+@media (max-width: 480px) {
+  .btn--lg { width: 100%; }
+  .hero-actions { width: 100%; }
+}
+
+/* ===================================================================
+   RENDIMIENTO PROTEGIDO — Reducción de movimiento
+   =================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .blob { animation: none !important; }
+}
