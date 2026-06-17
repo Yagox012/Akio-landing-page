@@ -104,22 +104,22 @@
 
       const name  = form.name.value.trim();
       const biz   = form.biz.value.trim();
-      const phone = form.phone.value.trim();
       const msg   = form.msg ? form.msg.value.trim() : '';
 
-      // Validación básica
-      if (!name || !biz || !phone) {
+      // Solo nombre y tipo de negocio son obligatorios
+      if (!name || !biz) {
         formError.hidden = false;
         formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
       formError.hidden = true;
 
-      // Armar mensaje de WhatsApp
+      // Construir mensaje de WhatsApp
       let waText = `Hola AKIO Studio, mi nombre es ${name} y me interesa la promoción de $1,999 para mi negocio de ${biz}.`;
       if (msg) waText += ` ${msg}`;
 
-      const waURL = `https://wa.me/525580951666?text=${encodeURIComponent(waText)}`; // REEMPLAZA AQUÍ CON TU NÚMERO REAL
+      const WA_NUMBER = '525580951666'; // REEMPLAZA AQUÍ CON TU NÚMERO REAL
+      const waURL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`;
       window.open(waURL, '_blank', 'noopener');
     });
 
