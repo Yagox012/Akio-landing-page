@@ -224,18 +224,12 @@ body {
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
   padding-right: max(1rem, env(safe-area-inset-right, 0px));
   padding-bottom: 1.25rem;
-  background: linear-gradient(
-    to bottom,
-    #0a0a0f 0%,
-    rgba(10, 10, 15, 0.85) 45%,
-    rgba(10, 10, 15, 0) 100%
-  );
-  /* iOS 26 ("Liquid Glass") ignora theme-color y tiñe la barra superior con el
-     background-color del primer elemento fixed/sticky que toca el borde (este).
-     El shorthand de arriba deja background-color en transparent, así que lo
-     fijamos explícito = mismo color que html/body → la barra de Safari y el
-     contenido comparten color y desaparece el "corte". (WebKit bug 301756) */
-  background-color: #0a0a0f;
+  /* SIN fondo en el wrapper: era un rectángulo opaco fijo (z-index:50, ~140px)
+     que tapaba el fondo decorativo justo en la zona del Dynamic Island. Ese
+     era el "corte". Al quitarlo, el fondo de la página sangra detrás de la
+     barra de estado translúcida (iOS 26) igual que GitHub. La legibilidad del
+     nav flotante la da el propio cristal de .nav-bar (backdrop-filter), intacto. */
+  background: transparent;
   --nav-dur: 0.3s;
   transition: transform var(--nav-dur) ease-in-out;
 }
