@@ -15,29 +15,55 @@
   /* ---------- 1. Navbar: compactar + auto-hide ---------- */
   const navbar     = document.getElementById('navbar');
   const navWrapper = navbar ? navbar.closest('.nav-wrapper') : null;
-  let lastScrollY  = 0;
+  let lastScrollY   = 0;
+  let lastScrollTime = Date.now();
+  let scrollVelocity = 0; // px/ms, suavizado con EMA
 
   if (navbar) {
+    // Velocidad → duración: rápido = animación corta, lento = animación larga
+    const MIN_DUR    = 0.08;  // s (scroll muy rápido)
+    const MAX_DUR    = 0.45;  // s (scroll muy lento o pausa)
+    const VEL_K      = 0.22;  // constante de escala: dur = VEL_K / velocity
+    const EMA_ALPHA  = 0.4;   // suavizado EMA (0 = sin cambio, 1 = sin suavizado)
+
+    const applyVelocityTransition = () => {
+      const raw = scrollVelocity > 0.01 ? VEL_K / scrollVelocity : MAX_DUR;
+      const dur = Math.min(MAX_DUR, Math.max(MIN_DUR, raw));
+      navWrapper.style.transitionDuration = `${dur.toFixed(2)}s`;
+    };
+
     const onScroll = () => {
-      const y = window.scrollY;
+      const now = Date.now();
+      const y   = window.scrollY;
+      const dt  = now - lastScrollTime;
+      const dy  = Math.abs(y - lastScrollY);
+
+      // Actualizar velocidad EMA; resetear si el usuario pausó el scroll
+      if (dt > 0 && dt < 200) {
+        scrollVelocity = EMA_ALPHA * (dy / dt) + (1 - EMA_ALPHA) * scrollVelocity;
+      } else if (dt >= 200) {
+        scrollVelocity = 0;
+      }
 
       // Compactar glass al bajar
       navbar.classList.toggle('scrolled', y > 24);
 
       // Auto-hide: ocultar al bajar, mostrar al subir
-      // No ocultamos si el menú móvil está abierto
       if (navWrapper) {
         const menuOpen = menu && !menu.hidden && !menu.classList.contains('is-closing');
         if (!menuOpen) {
           if (y > lastScrollY && y > 80) {
+            applyVelocityTransition();
             navWrapper.classList.add('nav-hidden');
           } else if (y < lastScrollY) {
+            applyVelocityTransition();
             navWrapper.classList.remove('nav-hidden');
           }
         }
       }
 
-      lastScrollY = y;
+      lastScrollY    = y;
+      lastScrollTime = now;
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
