@@ -9,7 +9,7 @@
   --spring-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Paleta */
-  --bg: #0a0a0f;
+  --bg: #0d0a1a;
   --accent: #7c5cff;
   --accent-2: #22d3ee;
   --glow: #a78bfa;
@@ -26,7 +26,7 @@ html {
   /* Color base hardcoded para que Safari pinte detrás de la Dynamic Island.
      SIN height explícito: forzar height constriñe el initial containing block
      y ancla los position:fixed (fondos/degradados) debajo del notch. */
-  background-color: #0a0a0f;
+  background-color: #0d0a1a;
   scroll-behavior: smooth;
   scroll-padding-top: calc(120px + env(safe-area-inset-top, 0px));
 }
@@ -35,7 +35,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100dvh;
-  background-color: #0a0a0f;
+  background-color: #0d0a1a;
   position: relative;
   /* SIN overflow aquí: CUALQUIER overflow (hidden/clip/scroll) en html o body
      limita el lienzo raíz y rompe viewport-fit=cover en iOS Safari. El recorte
@@ -75,7 +75,7 @@ body {
   width: 480px;
   height: 480px;
   background: radial-gradient(circle, rgba(124, 92, 255, 0.55), transparent 70%);
-  top: -120px;
+  top: -200px;
   left: -80px;
   animation: float-slow 18s ease-in-out infinite;
 }
@@ -226,10 +226,11 @@ body {
   padding-bottom: 1.25rem;
   background: linear-gradient(
     to bottom,
-    #0a0a0f 0%,
-    rgba(10, 10, 15, 0.85) 45%,
-    rgba(10, 10, 15, 0) 100%
+    #0d0a1a 0%,
+    rgba(13, 10, 26, 0.85) 45%,
+    rgba(13, 10, 26, 0) 100%
   );
+  background-color: #0d0a1a;
   --nav-dur: 0.3s;
   transition: transform var(--nav-dur) ease-in-out;
 }
