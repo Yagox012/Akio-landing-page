@@ -59,7 +59,10 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  overflow: hidden;
+  /* overflow:hidden eliminado: en iOS 26 puede limitar el lienzo de composición
+     detrás de la Dynamic Island aunque el elemento sea position:fixed con inset:0.
+     Los blobs no desbordan visualmente (position:absolute dentro de un fixed
+     que cubre todo el viewport). */
   pointer-events: none;
 }
 
@@ -1139,6 +1142,9 @@ body {
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .nav-bar { width: calc(100% - 0.5rem); padding: 0.55rem 0.7rem 0.55rem 1.1rem; }
+  /* Si iOS 26 devuelve env()=0 en tab normal, max() garantiza ≥64px → pill
+     siempre queda por debajo del Dynamic Island (~59px) sin importar env(). */
+  .nav-wrapper { padding-top: max(env(safe-area-inset-top, 0px), 4rem); }
   .hero-trust { gap: 0.8rem; }
   .trust-divider { display: none; }
   .benefits-grid { grid-template-columns: 1fr; }

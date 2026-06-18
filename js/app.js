@@ -9,13 +9,18 @@
   'use strict';
 
   /* ---------- 0. iOS scroll runway ---------- */
-  // A scrollY=0, Safari 26 muestrea background-color plano para el tinte del
-  // status bar y NO compósita píxeles reales detrás del Dynamic Island.
-  // Con scrollY≥1 los compósita de verdad → el fondo sangra tras la isla.
+  // A scrollY=0, Safari 26 muestrea background-color plano (no composita píxeles
+  // reales) para el tinte de la barra de estado. Con scrollY≥1 composita el
+  // fondo real → el blob morado sangra detrás del Dynamic Island.
+  // Se usa { behavior:'instant' } para ignorar scroll-behavior:smooth del CSS.
   if ('ontouchstart' in window) {
-    window.addEventListener('load', function () {
-      if (window.scrollY === 0) window.scrollTo(0, 1);
-    }, { once: true });
+    var doRunway = function () {
+      if (window.scrollY === 0) window.scrollTo({ top: 1, behavior: 'instant' });
+    };
+    doRunway(); // síncrono: script al pie del body, antes de window.load
+    if (document.readyState !== 'complete') {
+      window.addEventListener('load', doRunway, { once: true });
+    }
   }
 
   /* Refs compartidos */
