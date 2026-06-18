@@ -42,15 +42,14 @@ body {
      horizontal se delega al wrapper interno .page-wrap. */
 }
 
-/* Wrapper global: controla el overflow horizontal un nivel hacia adentro,
-   dejando html/body con overflow:visible para preservar el modo inmersivo.
-   position:relative NO crea containing block para los position:fixed
-   (.bg-decor, .nav-wrapper), así que siguen sangrando hasta el borde físico. */
+/* Wrapper de contenido: SIN overflow. html, body y .page-wrap operan todos
+   con overflow:visible para no limitar el lienzo raíz; cualquier overflow
+   aquí rompería viewport-fit=cover en iOS Safari. El recorte horizontal de
+   los blobs se aísla exclusivamente en .bg-decor. */
 .page-wrap {
   width: 100%;
   min-height: 100dvh;
   position: relative;
-  overflow-x: hidden;
 }
 
 /* ===================================================================

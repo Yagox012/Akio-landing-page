@@ -43,22 +43,24 @@
 
   <!-- Estilos personalizados: Liquid Glass + Spring Physics -->
   <!-- ?v= fuerza recarga del CSS cuando hay cambios (cache-busting) -->
-  <link rel="stylesheet" href="css/styles.css?v=31" />
+  <link rel="stylesheet" href="css/styles.css?v=32" />
 </head>
 
 <body class="bg-akio-bg text-white font-sans antialiased">
 
-  <!-- Wrapper global: controla el overflow horizontal SIN tocar html/body,
-       para no romper la propagación de viewport-fit=cover en iOS Safari -->
-  <div class="page-wrap">
-
-  <!-- Fondo decorativo: gradientes sutiles + blobs -->
+  <!-- Lienzo de fondo exclusivo: ÚNICO elemento con overflow:hidden.
+       Aísla el recorte de los blobs aquí para que html/body/.page-wrap
+       queden con overflow:visible y Safari sangre el fondo hasta el tope. -->
   <div class="bg-decor" aria-hidden="true">
     <div class="blob blob--1"></div>
     <div class="blob blob--2"></div>
     <div class="blob blob--3"></div>
     <div class="grid-overlay"></div>
   </div>
+
+  <!-- Wrapper de contenido: SIN overflow, fluye libre para no romper
+       la propagación de viewport-fit=cover en iOS Safari -->
+  <div class="page-wrap">
 
   <!-- ============================ -->
   <!-- 1. BARRA DE NAVEGACIÓN FLOTANTE -->
