@@ -218,9 +218,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Sin padding-top: el fondo sangra hasta el borde físico de la pantalla.
-     El safe-area se aplica solo al contenido (.nav-bar) con margin-top. */
-  padding-top: 0;
+  /* El safe-area se aplica aquí para que el BORDE SUPERIOR del pill (nav-bar)
+     quede justo debajo del Dynamic Island. La zona 0→env(safe-area-inset-top)
+     es nav-wrapper transparente → el fondo de la página sangra libremente
+     detrás de la barra de estado Liquid Glass de iOS 26. */
+  padding-top: env(safe-area-inset-top, 0px);
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
   padding-right: max(1rem, env(safe-area-inset-right, 0px));
   padding-bottom: 1.25rem;
@@ -246,9 +248,8 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.6rem 0.65rem 0.6rem 1.4rem;
-  /* padding-top sobreescribe el top del shorthand: el fondo del wrapper
-     llega a top:0 y solo el contenido interno baja de la Dynamic Island */
-  padding-top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
+  /* El safe-area ya está en .nav-wrapper; aquí solo el margen visual */
+  padding-top: 1.25rem;
   border-radius: 9999px;
   animation: nav-drop 0.8s var(--spring) both;
 
