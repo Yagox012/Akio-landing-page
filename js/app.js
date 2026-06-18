@@ -29,7 +29,7 @@
     const applyVelocityTransition = () => {
       const raw = scrollVelocity > 0.01 ? VEL_K / scrollVelocity : MAX_DUR;
       const dur = Math.min(MAX_DUR, Math.max(MIN_DUR, raw));
-      navWrapper.style.transitionDuration = `${dur.toFixed(2)}s`;
+      navWrapper.style.setProperty('--nav-dur', `${dur.toFixed(2)}s`);
     };
 
     const onScroll = () => {

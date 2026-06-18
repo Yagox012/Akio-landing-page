@@ -212,7 +212,8 @@ body {
     rgba(10, 10, 15, 0) 100%
   );
   /* Auto-hide: solo transform, sin tocar background/blur */
-  transition: transform 0.3s ease-in-out;
+  --nav-dur: 0.3s;
+  transition: transform var(--nav-dur) ease-in-out;
 }
 
 .nav-wrapper.nav-hidden {
