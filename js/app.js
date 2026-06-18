@@ -1,30 +1,62 @@
 /* ===================================================================
    AKIO STUDIO — Interactividad (Vanilla JS)
-   - Nav compacta al hacer scroll
-   - Menú móvil (toggle + cierre)
+   - Nav compacta + auto-hide al hacer scroll
+   - Menú móvil (toggle + cierre animado)
    - Reveal en cascada por scroll (IntersectionObserver)
    =================================================================== */
 
 (function () {
   'use strict';
 
-  /* ---------- 1. Navbar: compactar al hacer scroll ---------- */
-  const navbar = document.getElementById('navbar');
+  /* Refs compartidos */
+  const toggle     = document.getElementById('menu-toggle');
+  const menu       = document.getElementById('mobile-menu');
+
+  /* ---------- 1. Navbar: compactar + auto-hide ---------- */
+  const navbar     = document.getElementById('navbar');
+  const navWrapper = navbar ? navbar.closest('.nav-wrapper') : null;
+  let lastScrollY  = 0;
+
   if (navbar) {
     const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 24);
+      const y = window.scrollY;
+
+      // Compactar glass al bajar
+      navbar.classList.toggle('scrolled', y > 24);
+
+      // Auto-hide: ocultar al bajar, mostrar al subir
+      // No ocultamos si el menú móvil está abierto
+      if (navWrapper) {
+        const menuOpen = menu && !menu.hidden && !menu.classList.contains('is-closing');
+        if (!menuOpen) {
+          if (y > lastScrollY && y > 80) {
+            navWrapper.classList.add('nav-hidden');
+          } else if (y < lastScrollY) {
+            navWrapper.classList.remove('nav-hidden');
+          }
+        }
+      }
+
+      lastScrollY = y;
     };
+
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
   /* ---------- 2. Menú móvil ---------- */
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-
   if (toggle && menu) {
     const closeMenu = () => {
-      menu.hidden = true;
+      // Guardia: no cerrar si ya está cerrando o ya está oculto
+      if (menu.classList.contains('is-closing') || menu.hidden) return;
+
+      // Animar cierre, luego ocultar
+      menu.classList.add('is-closing');
+      menu.addEventListener('animationend', () => {
+        menu.hidden = true;
+        menu.classList.remove('is-closing');
+      }, { once: true });
+
       toggle.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Abrir menú');
@@ -32,6 +64,8 @@
 
     const openMenu = () => {
       menu.hidden = false;
+      // Mostrar nav siempre que el menú abra
+      if (navWrapper) navWrapper.classList.remove('nav-hidden');
       toggle.classList.add('open');
       toggle.setAttribute('aria-expanded', 'true');
       toggle.setAttribute('aria-label', 'Cerrar menú');
@@ -69,7 +103,6 @@
     const taken = parseInt(cuposEl.dataset.taken, 10) || 0;
     const available = Math.max(0, total - taken);
 
-    // Renderizar los puntos
     const dotsEl = document.getElementById('cupos-dots');
     if (dotsEl) {
       for (let i = 0; i < total; i++) {
@@ -80,7 +113,6 @@
       }
     }
 
-    // Actualizar texto
     const textEl = document.getElementById('cupos-text');
     if (textEl) {
       if (available === 0) {
@@ -102,9 +134,9 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name  = form.name.value.trim();
-      const biz   = form.biz.value.trim();
-      const msg   = form.msg ? form.msg.value.trim() : '';
+      const name = form.name.value.trim();
+      const biz  = form.biz.value.trim();
+      const msg  = form.msg ? form.msg.value.trim() : '';
 
       // Solo nombre y tipo de negocio son obligatorios
       if (!name || !biz) {
@@ -145,7 +177,6 @@
       );
       revealItems.forEach((item) => observer.observe(item));
     } else {
-      // Fallback: mostrar todo si no hay soporte
       revealItems.forEach((item) => item.classList.add('is-visible'));
     }
   }

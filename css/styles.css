@@ -211,6 +211,12 @@ body {
     rgba(10, 10, 15, 0.85) 45%,
     rgba(10, 10, 15, 0) 100%
   );
+  /* Auto-hide: solo transform, sin tocar background/blur */
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-wrapper.nav-hidden {
+  transform: translateY(-120%);
 }
 
 .nav-bar {
@@ -348,6 +354,15 @@ body {
 @keyframes menu-open {
   from { opacity: 0; transform: translateY(-12px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes menu-close {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-8px) scale(0.97); }
+}
+.mobile-menu.is-closing {
+  pointer-events: none;
+  animation: menu-close 0.22s ease-in both;
 }
 
 .mobile-link {
