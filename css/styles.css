@@ -37,6 +37,11 @@ body {
   min-height: 100dvh;
   background-color: #0a0a0f;
   position: relative;
+  /* overflow-x: clip (NO hidden). `hidden` convierte al body en scroll
+     container y WebKit deja de propagar el viewport-fit=cover, anclando el
+     contenido dentro de la safe area (franja negra bajo la Dynamic Island).
+     `clip` recorta el overflow horizontal sin romper el modo inmersivo. */
+  overflow-x: clip;
 }
 
 /* ===================================================================
