@@ -233,9 +233,10 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.6rem 0.65rem 0.6rem 1.4rem;
+  /* padding-top sobreescribe el top del shorthand: el fondo del wrapper
+     llega a top:0 y solo el contenido interno baja de la Dynamic Island */
+  padding-top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
   border-radius: 9999px;
-  /* Safe-area solo en el contenido, no en el fondo del wrapper */
-  margin-top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
   animation: nav-drop 0.8s var(--spring) both;
 
   /* Cristal Apple: blur moderado para que se vea el fondo,
