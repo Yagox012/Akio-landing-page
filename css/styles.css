@@ -75,7 +75,7 @@ body {
   width: 480px;
   height: 480px;
   background: radial-gradient(circle, rgba(124, 92, 255, 0.55), transparent 70%);
-  top: -120px;
+  top: -180px;
   left: -80px;
   animation: float-slow 18s ease-in-out infinite;
 }

@@ -8,6 +8,16 @@
 (function () {
   'use strict';
 
+  /* ---------- 0. iOS scroll runway ---------- */
+  // A scrollY=0, Safari 26 muestrea background-color plano para el tinte del
+  // status bar y NO compósita píxeles reales detrás del Dynamic Island.
+  // Con scrollY≥1 los compósita de verdad → el fondo sangra tras la isla.
+  if ('ontouchstart' in window) {
+    window.addEventListener('load', function () {
+      if (window.scrollY === 0) window.scrollTo(0, 1);
+    }, { once: true });
+  }
+
   /* Refs compartidos */
   const toggle     = document.getElementById('menu-toggle');
   const menu       = document.getElementById('mobile-menu');
