@@ -37,11 +37,20 @@ body {
   min-height: 100dvh;
   background-color: #0a0a0f;
   position: relative;
-  /* overflow-x: clip (NO hidden). `hidden` convierte al body en scroll
-     container y WebKit deja de propagar el viewport-fit=cover, anclando el
-     contenido dentro de la safe area (franja negra bajo la Dynamic Island).
-     `clip` recorta el overflow horizontal sin romper el modo inmersivo. */
-  overflow-x: clip;
+  /* SIN overflow aquí: CUALQUIER overflow (hidden/clip/scroll) en html o body
+     limita el lienzo raíz y rompe viewport-fit=cover en iOS Safari. El recorte
+     horizontal se delega al wrapper interno .page-wrap. */
+}
+
+/* Wrapper global: controla el overflow horizontal un nivel hacia adentro,
+   dejando html/body con overflow:visible para preservar el modo inmersivo.
+   position:relative NO crea containing block para los position:fixed
+   (.bg-decor, .nav-wrapper), así que siguen sangrando hasta el borde físico. */
+.page-wrap {
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* ===================================================================
