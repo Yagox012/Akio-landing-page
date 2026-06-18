@@ -1142,9 +1142,6 @@ body {
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .nav-bar { width: calc(100% - 0.5rem); padding: 0.55rem 0.7rem 0.55rem 1.1rem; }
-  /* Si iOS 26 devuelve env()=0 en tab normal, max() garantiza ≥64px → pill
-     siempre queda por debajo del Dynamic Island (~59px) sin importar env(). */
-  .nav-wrapper { padding-top: max(env(safe-area-inset-top, 0px), 4rem); }
   .hero-trust { gap: 0.8rem; }
   .trust-divider { display: none; }
   .benefits-grid { grid-template-columns: 1fr; }

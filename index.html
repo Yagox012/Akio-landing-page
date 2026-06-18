@@ -4,9 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="AKIO Studio — Diseñamos la página web de tu negocio en 48 horas. Diseño de alta conversión, mobile-first, con textos de venta incluidos." />
-  <!-- iOS 15–18 tiñe la barra superior con este color. iOS 26 lo ignora y usa
+  <!-- iOS 15-18 tine la barra superior con este color. iOS 26 lo ignora y usa
        el background-color del nav fixed (ver styles.css). Ambos = #0a0a0f. -->
   <meta name="theme-color" content="#0a0a0f" />
+  <!-- Permite que la pagina se extienda detras de la barra de estado (notch /
+       Dynamic Island / home indicator) tanto en Safari como en modo instalado. -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -45,7 +50,7 @@
 
   <!-- Estilos personalizados: Liquid Glass + Spring Physics -->
   <!-- ?v= fuerza recarga del CSS cuando hay cambios (cache-busting) -->
-  <link rel="stylesheet" href="css/styles.css?v=38" />
+  <link rel="stylesheet" href="css/styles.css?v=39" />
 </head>
 
 <body class="bg-akio-bg text-white font-sans antialiased">
