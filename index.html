@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="AKIO Studio — Diseñamos la página web de tu negocio en 48 horas. Diseño de alta conversión, mobile-first, con textos de venta incluidos." />
-  <meta name="theme-color" content="#0d0a1a" />
+  <!-- iOS 15–18 tiñe la barra superior con este color. iOS 26 lo ignora y usa
+       el background-color del nav fixed (ver styles.css). Ambos = #0a0a0f. -->
+  <meta name="theme-color" content="#0a0a0f" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -22,7 +24,7 @@
         extend: {
           colors: {
             akio: {
-              bg: '#0d0a1a',
+              bg: '#0a0a0f',
               accent: '#7c5cff',
               accent2: '#22d3ee',
               glow: '#a78bfa'
@@ -43,7 +45,7 @@
 
   <!-- Estilos personalizados: Liquid Glass + Spring Physics -->
   <!-- ?v= fuerza recarga del CSS cuando hay cambios (cache-busting) -->
-  <link rel="stylesheet" href="css/styles.css?v=33" />
+  <link rel="stylesheet" href="css/styles.css?v=34" />
 </head>
 
 <body class="bg-akio-bg text-white font-sans antialiased">
